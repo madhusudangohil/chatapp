@@ -1,0 +1,47 @@
+<html ng-app="chatapp">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div ng-controller="chatCtrl as chat">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h4>Register New User</h4>                        
+                            <input ng-model="chat.username" type="text">
+                            <button ng-click="chat.createUser(chat.username)">Submit User</button>                        
+                    </div>
+                </div>
+                <div class="row">                    
+                        <div class="col-md-4">     
+                            <div>
+                                <h3>Online Users</h3>
+                                <ul>
+                                    <li ng-repeat="user in chat.users">
+                                        <strong>{{user.username}}</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">                                    
+                                <h3>Blah blah chat</h3>
+                                <ul>
+                                    <li ng-repeat="message in chat.messages track by $index">
+                                        <strong>{{message.username}}:</strong><span>{{message.message}}</span>
+                                    </li>
+                                </ul>
+                                <input ng-model="chat.newMessage" type="text"> <button ng-click="chat.sendMessage()">Send</button>
+                        </div>
+                </div>
+            </div>
+        </div>       
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <script src="app.js"></script>
+    <script src="/chat/chat-controller.js"></script>
+    <script src="/user-creation/user-creation-controller.js"></script>
+
+</html>
